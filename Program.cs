@@ -30,7 +30,23 @@ namespace LINQ_S01
             #endregion
 
             #region 5.Get all products that are in stock(UnitsInStock > 0) and belong to the "Condiments" category.
-            var result = Source.ProductList.Where(P => P.UnitsInStock > 0 && P.Category == "Seafood");
+            //var result = Source.ProductList.Where(P => P.UnitsInStock > 0 && P.Category == "Condiments");
+
+            #endregion
+
+            #region 6.Create a new anonymous type with three properties: 
+            //● Name → the product name
+            //● Price → the unit price
+            //● StockStatus → a string: "Available" if UnitsInStock > 0, otherwise "Out of Stock"
+            //● Print the result.
+
+            var result = Source.ProductList.Select(P => new
+            {
+                Name = P.ProductName,
+                Price = P.UnitPrice,
+                StockStatus = P.UnitsInStock > 0 ? "Available" : "Out of Stock"
+            });
+
             #endregion
 
             foreach (var item in result)
