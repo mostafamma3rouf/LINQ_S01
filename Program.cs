@@ -40,19 +40,25 @@ namespace LINQ_S01
             //● StockStatus → a string: "Available" if UnitsInStock > 0, otherwise "Out of Stock"
             //● Print the result.
 
-            var result = Source.ProductList.Select(P => new
-            {
-                Name = P.ProductName,
-                Price = P.UnitPrice,
-                StockStatus = P.UnitsInStock > 0 ? "Available" : "Out of Stock"
-            });
+            //var result = Source.ProductList.Select(P => new
+            //{
+            //    Name = P.ProductName,
+            //    Price = P.UnitPrice,
+            //    StockStatus = P.UnitsInStock > 0 ? "Available" : "Out of Stock"
+            //});
 
             #endregion
 
-            foreach (var item in result)
-            {
-                Console.WriteLine(item);
-            }
+            #region 7.Print each product's name along with its position (1-based) in the list. Expected format: 1.Chai, 2.Chang, etc.
+            var result = Source.ProductList.Select((P, I) => $"{I + 1}.{P.ProductName}").ToList();
+
+            Console.WriteLine(string.Join(", ", result));
+            #endregion
+
+            //foreach (var item in result)
+            //{
+            //    Console.WriteLine(item);
+            //}
         }
     }
 }
