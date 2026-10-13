@@ -13,8 +13,14 @@ namespace LINQ_S01
             #endregion
 
             #region 2.Get a list of only the product names from ProductList. Print each name.
-            var result = Source.ProductList.Select(P => P.ProductName);
+            //var result = Source.ProductList.Select(P => P.ProductName);
 
+            #endregion
+
+            #region 3.Sort all products by UnitPrice(ascending). Print each product's name and price.
+            var result = Source.ProductList.Where(P => P.UnitPrice > 0)
+                                           .OrderBy(P => P.UnitPrice)
+                                           .Select(P => new{P.ProductName, P.UnitPrice});
             #endregion
 
             foreach (var item in result)
