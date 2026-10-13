@@ -25,7 +25,12 @@ namespace LINQ_S01
             #endregion
 
             #region 4.Get all products where UnitPrice is between 10 and 30
-            var result = Source.ProductList.Where(P => P.UnitPrice > 10 && P.UnitPrice < 30);
+            //var result = Source.ProductList.Where(P => P.UnitPrice > 10 && P.UnitPrice < 30);
+
+            #endregion
+
+            #region 5.Get all products that are in stock(UnitsInStock > 0) and belong to the "Condiments" category.
+            var result = Source.ProductList.Where(P => P.UnitsInStock > 0 && P.Category == "Seafood");
             #endregion
 
             foreach (var item in result)
