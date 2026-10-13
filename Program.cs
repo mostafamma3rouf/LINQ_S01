@@ -1,4 +1,5 @@
 ﻿using LINQ_S01.DataSource;
+using System.Diagnostics;
 
 namespace LINQ_S01
 {
@@ -62,9 +63,18 @@ namespace LINQ_S01
             #endregion
 
             #region 9.Get all products from the "Beverages" category, sorted by UnitsInStock descending. Print name and stock.
-            var result = Source.ProductList.Where(P => P.Category == "Beverages")
-                                           .OrderByDescending(P => P.UnitsInStock)
-                                           .Select(P => new {P.ProductName, P.UnitsInStock});
+            //var result = Source.ProductList.Where(P => P.Category == "Beverages")
+            //                               .OrderByDescending(P => P.UnitsInStock)
+            //                               .Select(P => new {P.ProductName, P.UnitsInStock});
+
+            #endregion
+
+            #region 10.Using QUERY SYNTAX with a compound from clause, list all orders placed in 1997 or later showing CustomerID and OrderDate.
+            var result = from Cutomer in Source.CustomerList
+                         from OrderItem in Cutomer.Orders
+                         where OrderItem.OrderDate.Year >= 1997
+                         select new { Cutomer.CustomerID, OrderItem.OrderDate };
+
             #endregion
 
             foreach (var item in result)
