@@ -50,15 +50,20 @@ namespace LINQ_S01
             #endregion
 
             #region 7.Print each product's name along with its position (1-based) in the list. Expected format: 1.Chai, 2.Chang, etc.
-            var result = Source.ProductList.Select((P, I) => $"{I + 1}.{P.ProductName}").ToList();
+            //var result = Source.ProductList.Select((P, I) => $"{I + 1}.{P.ProductName}").ToList();
+            //Console.WriteLine(string.Join(", ", result));
 
-            Console.WriteLine(string.Join(", ", result));
             #endregion
 
-            //foreach (var item in result)
-            //{
-            //    Console.WriteLine(item);
-            //}
+            #region 8.Sort ProductList by Category ascending, then within each category, sort by UnitPrice descending.
+            var result = Source.ProductList.OrderBy(P => P.Category)
+                                           .OrderByDescending(P => P.UnitPrice);
+            #endregion
+
+            foreach (var item in result)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }
